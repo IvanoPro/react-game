@@ -14,11 +14,11 @@
 }
 
 .Renderer-tiles .Entity {
-  background-color: #f7f1f1;
+  background-color: #e8adad;
 }
 
 .Renderer-apples .Entity {
-  background-color: #c89; 
+  background-color: rgb(189, 78, 106); 
   border-radius: 17px 14px 12px 10px ;
   animation: pop-in 0.66s ease-in-out;
 }

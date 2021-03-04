@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+
+import GameState from './models/GameState';
+import initGameState from './actions/initGameState';
+import initGameLoop from './actions/initGameLoop';
+import updateGame from './actions/updateGame';
+import renderGame from './actions/renderGame';
+import initInput from './actions/initInput';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const game = window.game = new GameState();
+initGameState(game);
+initInput(game);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+initGameLoop(game, (dt) => {
+  updateGame(game, dt);
+  renderGame(game);
+});

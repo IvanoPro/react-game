@@ -1,17 +1,22 @@
 import random from 'lodash/random';
 
+const MOVEMENT_COMMAND_QUEUE_SIZE = 4;
+
 export default class GameState {
   mapWidth = 16;
   mapHeight = 16;
-  turnDuration = 500;
-  turnTimer = 0;
+  tickDuration = 200;
+  tickTimer = 0;
   score = 0;
   tiles = []; 
   apples = [];
   snake = {
+    movementDirection: 'up',
     segments: [],
   };
-  inputDir = 'up'; 
+  input = {
+    movementCommands: [],
+  };
 
   findEntityAt(x, y) {
     for (const a of this.apples) {
@@ -38,6 +43,13 @@ export default class GameState {
     return {
       x: random(this.mapWidth - 1),
       y: random(this.mapHeight - 1),
+    }
+  }
+
+  inputMovementCommand(movementCommand) {
+    this.input.movementCommands.push(movementCommand);
+    while (this.input.movementCommands.length > MOVEMENT_COMMAND_QUEUE_SIZE) {
+      this.input.movementCommands.shift();
     }
   }
 }

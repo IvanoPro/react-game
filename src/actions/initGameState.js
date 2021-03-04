@@ -1,10 +1,10 @@
 import Entity, {createTile, createApple, createSnakeSegment} from '../models/Entity';
 
 export default function initGameState(game) {
-  game.turnDuration = 200;
-  game.turnTimer = 0;
+  game.tickDuration = 200;
+  game.tickTimer = 0;
   game.score = 0;
-  game.inputDir = 'up';
+  game.input.movementCommands = ['up'];
 
   game.tiles.length = 0;
   for (let x = 0; x < game.mapWidth; x++) {
@@ -19,6 +19,7 @@ export default function initGameState(game) {
   game.apples.push(new Entity(7, 2));
   game.apples.forEach(createApple);
 
+  game.snake.movementDirection = 'up';
   game.snake.segments.length = 0;
   game.snake.segments.push(new Entity(4, 4));
   game.snake.segments.push(new Entity(4, 5));

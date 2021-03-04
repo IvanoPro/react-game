@@ -3,28 +3,37 @@ import Entity, {createApple} from '../models/Entity';
 import last from 'lodash/last';
 
 export default function updateGame(game, dt) {
-  game.turnTimer += dt;
+  game.tickTimer += dt;
 
-  game.turnDuration *= 0.9999;
+  game.tickDuration *= 0.9999;
 
-  if (game.turnTimer >= game.turnDuration) {
-    takeTurn(game);
-    game.turnTimer = 0;
+  if (game.tickTimer >= game.tickDuration) {
+    tick(game);
+    game.tickTimer = 0;
   }
 }
 
-function takeTurn(game) {
-  moveSnake(game.snake, game.inputDir);
+function tick(game) {
+  updateInput(game);
+
+  moveSnake(game.snake, game.snake.movementDirection);
 
   checkSnakeOutOfBounds(game);
   checkSnakeEatSelf(game);
   checkSnakeEatApple(game);
 }
 
-function moveSnake(snake, inputDir) {
+function updateInput(game) {
+  const movementCommand = game.input.movementCommands.shift();
+  if (movementCommand) {
+    game.snake.movementDirection = movementCommand;
+  }
+}
+
+function moveSnake(snake, movementCommand) {
   const head = snake.segments[0];
 
-  head.moveDir(inputDir);
+  head.moveDir(movementCommand);
 
   for (let i = 1; i < snake.segments.length; i++) {
     const prevSegment = snake.segments[i - 1];

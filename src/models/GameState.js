@@ -1,4 +1,5 @@
 import random from 'lodash/random';
+import {ENTITY_DEFAULT_WIDTH, ENTITY_DEFAULT_HEIGHT} from './Entity';
 
 const MOVEMENT_COMMAND_QUEUE_SIZE = 4;
 
@@ -8,7 +9,7 @@ export default class GameState {
   tickDuration = 200;
   tickTimer = 0;
   score = 0;
-  tiles = []; 
+  tiles = [];
   apples = [];
   snake = {
     movementDirection: 'up',
@@ -51,5 +52,13 @@ export default class GameState {
     while (this.input.movementCommands.length > MOVEMENT_COMMAND_QUEUE_SIZE) {
       this.input.movementCommands.shift();
     }
+  }
+
+  get mapHeightPx() {
+    return this.mapHeight * ENTITY_DEFAULT_HEIGHT;
+  }
+
+  get mapWidthPx() {
+    return this.mapWidth * ENTITY_DEFAULT_WIDTH;
   }
 }

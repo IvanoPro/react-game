@@ -1,4 +1,4 @@
-import Entity, {createTile, createApple, createSnakeSegment} from '../models/Entity';
+import Entity from '../models/Entity';
 
 export default function initGameState(game) {
   game.tickDuration = 120;
@@ -13,7 +13,6 @@ export default function initGameState(game) {
       game.tiles.push(new Entity(x, y));
     }
   }
-  game.tiles.forEach(createTile);
 
   if (game.apples.length !== 3) {
     game.apples.length = 0;
@@ -24,7 +23,6 @@ export default function initGameState(game) {
   game.apples[0].moveTo(1, 3);
   game.apples[1].moveTo(7, 2);
   game.apples[2].moveTo(5, 9);
-  game.apples.forEach(createApple);
 
   game.snake.movementDirection = 'up';
   game.snake.segments.length = 0;
@@ -33,5 +31,4 @@ export default function initGameState(game) {
   game.snake.segments.push(new Entity(5, 5));
   game.snake.segments.push(new Entity(5, 6));
   game.snake.segments.push(new Entity(5, 7));
-  game.snake.segments.forEach(createSnakeSegment);
 }

@@ -1,4 +1,3 @@
-  
 import React from 'react';
 import repeat from 'lodash/repeat';
 import './Instructions.css';
@@ -17,7 +16,7 @@ export default function Instructions({game}) {
         : null
       }
       <p style={{position: 'relative', top: 55, left: 55}}>
-        don't bite yourself
+        don't bite yourself :O
       </p>
     </div>
   );

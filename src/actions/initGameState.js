@@ -26,4 +26,4 @@ export default function initGameState(game) {
   game.snake.segments.push(new Entity(5, 6));
   game.snake.segments.push(new Entity(5, 7));
   game.snake.segments.forEach(createSnakeSegment);
-} 
+}

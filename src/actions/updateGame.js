@@ -79,4 +79,4 @@ function spawnApple(game) {
   const apple = new Entity(x, y);
   createApple(apple);
   game.apples.push(apple);
-} 
+}

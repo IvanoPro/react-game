@@ -80,4 +80,4 @@ export function createApple(entity) {
 export function createSnakeSegment(entity) {
   entity.color = '#8c9';
   return entity;
-} 
+}

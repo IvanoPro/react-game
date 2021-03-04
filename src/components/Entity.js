@@ -10,8 +10,8 @@ export default function Entity({entity}) {
         width: entity.width,
         height: entity.height,
         backgroundColor: entity.color,
-        transform: `translate3d(${positionX}px, ${positionY}px, 0)`,
-        borderRadius: 5,
+        left: positionX,
+        top: positionY,
       }}
     >
     </div>

@@ -56,7 +56,7 @@ function checkSnakeEatSelf(game) {
   const snakeHead = game.snake.segments[0];
   for (const segment of game.snake.segments) {
     if (segment !== snakeHead && segment.isCollidingWith(snakeHead)) {
-      killSnake(game);
+      return killSnake(game);
     }
   }
 }
@@ -65,13 +65,13 @@ function checkSnakeEatApple(game) {
   const snakeHead = game.snake.segments[0];
   for (const apple of game.apples) {
     if (snakeHead.isCollidingWith(apple)) {
-      eatApple(game, apple);
+      return eatApple(game, apple);
     }
   }
 }
 
 function eatApple(game, apple) {
-  game.score++;
+  game.setScore(game.score + 1);
 
   game.apples.splice(game.apples.indexOf(apple), 1);
 

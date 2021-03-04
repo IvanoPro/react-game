@@ -9,6 +9,7 @@ export default class GameState {
   tickDuration = 200;
   tickTimer = 0;
   score = 0;
+  highScore = Number(localStorage.getItem('game.highScore')) || 0;
   tiles = [];
   apples = [];
   snake = {
@@ -60,5 +61,13 @@ export default class GameState {
 
   get mapWidthPx() {
     return this.mapWidth * ENTITY_DEFAULT_WIDTH;
+  }
+
+  setScore(score) {
+    this.score = score;
+    if (score > this.highScore) {
+      this.highScore = score;
+      localStorage.setItem('game.highScore', this.highScore);
+    }
   }
 }

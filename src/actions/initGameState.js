@@ -1,9 +1,10 @@
 import Entity, {createTile, createApple, createSnakeSegment} from '../models/Entity';
 
 export default function initGameState(game) {
-  game.tickDuration = 200;
+  game.tickDuration = 120;
   game.tickTimer = 0;
   game.score = 0;
+  game.highScore = Number(localStorage.getItem('game.highScore')) || 0;
   game.input.movementCommands = ['up'];
 
   game.tiles.length = 0;
@@ -14,9 +15,15 @@ export default function initGameState(game) {
   }
   game.tiles.forEach(createTile);
 
-  game.apples.length = 0;
-  game.apples.push(new Entity(1, 3));
-  game.apples.push(new Entity(7, 2));
+  if (game.apples.length !== 3) {
+    game.apples.length = 0;
+    game.apples.push(new Entity(0, 0));
+    game.apples.push(new Entity(0, 0));
+    game.apples.push(new Entity(0, 0));
+  }
+  game.apples[0].moveTo(1, 3);
+  game.apples[1].moveTo(7, 2);
+  game.apples[2].moveTo(5, 9);
   game.apples.forEach(createApple);
 
   game.snake.movementDirection = 'up';
